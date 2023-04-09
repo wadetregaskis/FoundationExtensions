@@ -1,3 +1,3 @@
 # FoundationExtensions
 
-A description of this package.
+A miscellaneous collection of extensions to Apple's Foundation framework.
