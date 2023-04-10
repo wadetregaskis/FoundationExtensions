@@ -12,3 +12,13 @@ extension Optional {
         }
     }
 }
+
+extension Optional where Wrapped == String {
+    var orNilString: String {
+        if let self {
+            return self
+        } else {
+            return "nil"
+        }
+    }
+}
