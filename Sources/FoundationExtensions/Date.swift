@@ -3,8 +3,8 @@
 import Foundation
 
 
-extension Date {
-    static let relativeDateTimeFormatter = {
+public extension Date {
+    private static let relativeDateTimeFormatter = {
         var formatter = RelativeDateTimeFormatter()
         formatter.dateTimeStyle = .named
         formatter.unitsStyle = .full

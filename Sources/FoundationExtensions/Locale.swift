@@ -3,8 +3,8 @@
 import Foundation
 
 
-extension Locale {
-    public static var POSIX: Locale {
+public extension Locale {
+    static var POSIX: Locale {
         Locale(identifier: "en_US_POSIX")
     }
 }

@@ -3,7 +3,7 @@
 import Foundation
 
 
-extension Optional {
+public extension Optional {
     var orNilString: String {
         if let value = self {
             return String(describing: value)
@@ -13,7 +13,7 @@ extension Optional {
     }
 }
 
-extension Optional where Wrapped == String {
+public extension Optional where Wrapped == String {
     var orNilString: String {
         if let self {
             return self
