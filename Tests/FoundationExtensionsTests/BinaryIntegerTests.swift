@@ -6,7 +6,7 @@ import XCTest
 
 final class BinaryIntegerTests: XCTestCase {
     func testBits<T: BinaryInteger>(type: T.Type) throws {
-        for (input, expectedBitsRaw) in [(0, [Int]()),
+        for (input, expectedBitsRaw) in [(0, [UInt64]()),
                                          (1, [1]),
                                          (2, [2]),
                                          (3, [1, 2]),
@@ -30,7 +30,7 @@ final class BinaryIntegerTests: XCTestCase {
                                                0x1_0000_0000_0000, 0x2_0000_0000_0000, 0x4_0000_0000_0000, 0x8_0000_0000_0000,
                                                0x10_0000_0000_0000, 0x20_0000_0000_0000, 0x40_0000_0000_0000, 0x80_0000_0000_0000,
                                                0x100_0000_0000_0000, 0x200_0000_0000_0000, 0x400_0000_0000_0000, 0x800_0000_0000_0000,
-                                               0x1000_0000_0000_0000, 0x2000_0000_0000_0000, 0x4000_0000_0000_0000, -0x8000_0000_0000_0000])] {
+                                               0x1000_0000_0000_0000, 0x2000_0000_0000_0000, 0x4000_0000_0000_0000, 0x8000_0000_0000_0000])] {
             let actualBits: [T] = T(truncatingIfNeeded: input).bits
             let expectedBits: [T] = expectedBitsRaw.map(T.init(truncatingIfNeeded:)).filter { 0 != $0 }
             
