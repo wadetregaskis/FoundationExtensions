@@ -50,11 +50,11 @@ final class DataTests: XCTestCase {
                                       (Data(repeating: 0, count: 3), "000000"),
                                       (Data([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]), "000102030405060708090A0B0C0D0E0F10"),
                                       (exemplarData, "0B16212C3742004D58636FDEFF00")] {
-            XCTAssertEqual(testData.asHexString(spaceEvery: 0), hexString)
+            XCTAssertEqual(testData.asHexString(delimiterEvery: 0), hexString)
             XCTAssertEqual(testData.asHexString, hexString)
         }
 
-        for (spaceEvery, hexString) in ["0B 16 21 2C 37 42 00 4D 58 63 6F DE FF 00",
+        for (spaceEvery, baseHexString) in ["0B 16 21 2C 37 42 00 4D 58 63 6F DE FF 00",
                                         "0B16 212C 3742 004D 5863 6FDE FF00",
                                         "0B1621 2C3742 004D58 636FDE FF00",
                                         "0B16212C 3742004D 58636FDE FF00",
@@ -68,10 +68,23 @@ final class DataTests: XCTestCase {
                                         "0B16212C3742004D58636FDE FF00",
                                         "0B16212C3742004D58636FDEFF 00",
                                         "0B16212C3742004D58636FDEFF00"].enumerated() {
-            XCTAssertEqual(Data().asHexString(spaceEvery: spaceEvery + 1), "")
-            XCTAssertEqual(Data().asHexString(spaceEvery: -(spaceEvery + 1)), "")
-            XCTAssertEqual(exemplarData.asHexString(spaceEvery: spaceEvery + 1), hexString)
-            XCTAssertEqual(exemplarData.asHexString(spaceEvery: -(spaceEvery + 1)), hexString)
+            // Ensure the defaults: uppercase, and delimiter is a single space character.
+            XCTAssertEqual(Data().asHexString(delimiterEvery: spaceEvery + 1), "")
+            XCTAssertEqual(Data().asHexString(delimiterEvery: -(spaceEvery + 1)), "")
+            XCTAssertEqual(exemplarData.asHexString(delimiterEvery: spaceEvery + 1), baseHexString)
+            XCTAssertEqual(exemplarData.asHexString(delimiterEvery: -(spaceEvery + 1)), baseHexString)
+            
+            for uppercase in [true, false] {
+                for delimiter in ["", " ", ":", " & ", "⭐"] {
+                    let adjustedDelimiterHexString = baseHexString.replacingOccurrences(of: " ", with: delimiter)
+                    let hexString = uppercase ? adjustedDelimiterHexString : adjustedDelimiterHexString.lowercased()
+                    
+                    XCTAssertEqual(Data().asHexString(uppercase: uppercase, delimiterEvery: spaceEvery + 1, delimiter: delimiter), "")
+                    XCTAssertEqual(Data().asHexString(uppercase: uppercase, delimiterEvery: -(spaceEvery + 1), delimiter: delimiter), "")
+                    XCTAssertEqual(exemplarData.asHexString(uppercase: uppercase, delimiterEvery: spaceEvery + 1, delimiter: delimiter), hexString)
+                    XCTAssertEqual(exemplarData.asHexString(uppercase: uppercase, delimiterEvery: -(spaceEvery + 1), delimiter: delimiter), hexString)
+                }
+            }
         }
     }
 }

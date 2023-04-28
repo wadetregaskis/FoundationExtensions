@@ -12,39 +12,44 @@ public extension Data {
         asString(encoding: .utf8)
     }
 
-    //                                            0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
-    private static let hexCharacters: [UInt8] = [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70]
-
-    func asHexString(spaceEvery: Int) -> String {
-        //spaceEvery = abs(spaceEvery)
-
+    func asHexString(uppercase: Bool = true,
+                     delimiterEvery: Int = 0,
+                     delimiter: String = " ") -> String {
         let capacity = ((self.count * 2)
                         + Swift.max(0,
-                                    ((0 != spaceEvery)
-                                     ? (abs(self.count / spaceEvery)
-                                        - ((0 == self.count % spaceEvery)
+                                    ((0 != delimiterEvery)
+                                     ? (abs(self.count / delimiterEvery)
+                                        - ((0 == self.count % delimiterEvery)
                                            ? 1
-                                           : 0))
+                                           : 0)) * delimiter.utf8.count
                                      : 0)))
+        let letterOffset = (uppercase ? UInt8(ascii: "A") : UInt8(ascii: "a")) - 10
 
         return String(unsafeUninitializedCapacity: capacity) {
             var i = 0
-            var nextSpaceIn = abs(spaceEvery)
+            var nextSpaceIn = abs(delimiterEvery)
 
+            @inline(__always) func toHex(_ value: UInt8) -> UInt8 {
+                if value > 9 {
+                    return value + letterOffset
+                } else {
+                    return value + UInt8(ascii: "0")
+                }
+            }
+            
             for (offset, byte) in self.enumerated() {
-                $0[i] = Data.hexCharacters[Int(byte / 16)]
+                $0[i] = toHex(byte / 16)
                 i += 1
-                $0[i] = Data.hexCharacters[Int(byte % 16)]
+                $0[i] = toHex(byte % 16)
                 i += 1
 
-                if 0 != spaceEvery && (offset + 1) < self.count {
+                if 0 != delimiterEvery && (offset + 1) < self.count {
                     nextSpaceIn -= 1
 
                     if 0 == nextSpaceIn {
-                        $0[i] = 32
-                        i += 1
+                        i = $0[i..<(i + delimiter.utf8.count)].initialize(fromContentsOf: delimiter.utf8)
 
-                        nextSpaceIn = abs(spaceEvery)
+                        nextSpaceIn = abs(delimiterEvery)
                     }
                 }
             }
@@ -55,6 +60,6 @@ public extension Data {
     }
 
     var asHexString: String {
-        asHexString(spaceEvery: 0)
+        asHexString()
     }
 }
