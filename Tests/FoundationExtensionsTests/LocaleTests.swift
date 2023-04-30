@@ -11,6 +11,10 @@ final class LocaleTests: XCTestCase {
         XCTAssertEqual(locale.identifier, "en_US_POSIX")
 
         if #available(iOS 16, macCatalyst 16, macOS 13, tvOS 16, watchOS 9, *) {
+#if os(Linux) || os(Windows)
+            XCTAssertEqual(locale.regionCode, "US")
+            XCTAssertEqual(locale.languageCode, "en")
+#else
             XCTAssertEqual(locale.region?.identifier, "US")
 
             let language = locale.language
@@ -18,6 +22,7 @@ final class LocaleTests: XCTestCase {
             XCTAssertEqual(language.languageCode, "en")
             XCTAssertEqual(language.minimalIdentifier, "en")
             XCTAssertEqual(language.maximalIdentifier, "en-Latn-US")
+#endif
         }
     }
 }
