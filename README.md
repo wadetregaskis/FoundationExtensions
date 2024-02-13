@@ -27,6 +27,11 @@ A miscellaneous collection of extensions to Apple's Foundation framework.
 
 * `intMax` is the upper bound of the range of integer values that can be accurately represented in the respective floating-point type.
 
+### IteratorProtocol
+
+* `async` to return an async version of a sync iterator.
+* `typeErased` property to convert the iterator to `AnyIterator`, as a convenience for cases such as optional chaining.
+
 ### Locale
 
 * `POSIX` is a simple constant for the POSIX locale, as a convenience so you can write `Locale.POSIX` instead of `Locale(identifier: "en_US_POSIX")`.
