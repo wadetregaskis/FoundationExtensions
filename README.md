@@ -23,6 +23,10 @@ A miscellaneous collection of extensions to Apple's Foundation framework.
 
 * `timeAgo` returns a human-readable, localised description of how long ago a given `Date` was, e.g. "2 hours ago".
 
+### Float & Double
+
+* `intMax` is the upper bound of the range of integer values that can be accurately represented in the respective floating-point type.
+
 ### Locale
 
 * `POSIX` is a simple constant for the POSIX locale, as a convenience so you can write `Locale.POSIX` instead of `Locale(identifier: "en_US_POSIX")`.
