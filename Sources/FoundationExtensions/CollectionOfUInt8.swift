@@ -1,6 +1,6 @@
 //  Created by Wade Tregaskis on 2024-03-02.
 
-extension Collection where Element == UInt8 {
+public extension Collection where Element == UInt8 {
     func asHexString(uppercase: Bool = true,
                      delimiterEvery: Int = 0,
                      delimiter: String = " ") -> String {
