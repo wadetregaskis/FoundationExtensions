@@ -16,6 +16,11 @@ A miscellaneous collection of extensions to Apple's Foundation framework.
 
 * `asHexString(uppercase:delimiterEvery:delimiter:)` formats a `Data` into hex (as a `String`), e.g. `Data(bytes: "woot", count: 4).asHexString(delimiterEvery: 1)` -> `"77 6F 6F 74"`.
   * It also has a shorthand version `asHexString` for convenience (omitting the parentheses), if you don't need to customise its defaults.
+
+### Comparable (e.g. numbers, strings, anything you can put into a range, etc).
+
+* `clamp` and `clamped` to conform a value into a given range (supporting all finite range types), e.g. `5.clamped(..<0)` -> `-1`.
+  * Note: up-to-but-not-including ranges (`..<`) are only supported on types that are _also_ `Strideable`.
   
 ### Data
 
