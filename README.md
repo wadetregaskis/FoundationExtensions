@@ -12,12 +12,15 @@ A miscellaneous collection of extensions to Apple's Foundation framework.
 * `bits` returns the individual bits of an integer, in an array.  e.g. `19.bits` -> `[1, 2, 16]`.
 * `bitIndices` is like `bits` but returns the indices (as an `IndexSet`) instead of the values themselves, e.g. `19.bitIndices` -> `IndexSet([0...1], 4)`.
 
+### Collections of UInt8s (e.g. `Array[UInt8]`, `Data`, etc)
+
+* `asHexString(uppercase:delimiterEvery:delimiter:)` formats a `Data` into hex (as a `String`), e.g. `Data(bytes: "woot", count: 4).asHexString(delimiterEvery: 1)` -> `"77 6F 6F 74"`.
+  * It also has a shorthand version `asHexString` for convenience (omitting the parentheses), if you don't need to customise its defaults.
+  
 ### Data
 
 * `asString(encoding:)` is a more ergonomic version of `String(data:encoding:)`.
   * It has a shorthand version `asString` which assumes UTF-8.
-* `asHexString(uppercase:delimiterEvery:delimiter:)` formats a `Data` into hex (as a `String`), e.g. `Data(bytes: "woot", count: 4).asHexString(delimiterEvery: 1)` -> `"77 6F 6F 74"`.
-  * It also has a shorthand version `asHexString` for convenience (omitting the parentheses), if you don't need to customise its defaults.
  
 ### Date
 
