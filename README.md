@@ -7,6 +7,10 @@
 
 A miscellaneous collection of extensions to Apple's Foundation framework.
 
+### AsyncSequence
+
+* `collect(upTo:stripTerminator:)` gathers items from the sequence into a `RangeReplaceableCollection` of your choosing, up until either the end of the sequence or the given terminator subsequence is encountered.  The terminator can optionally be included in the returned collection.
+
 ### BidirectionalCollection
 
 * `longestPrefix(where:)` determines the longest prefix that matches a given condition (optionally performing a transformation on that prefix, as well), using a binary search.
