@@ -12,6 +12,9 @@ public extension Date {
         return formatter
     }()
 
+    /// Returns a human-readable, localised description of how long ago the date was, e.g. "2 hours ago".
+    ///
+    /// The description may be approximate, typically limited to only the first significant date & time component (e.g. just "2 hours ago" for deltas ranging from 1.5 to 2.5 hours ago).
     var timeAgo: String {
         Date.relativeDateTimeFormatter.localizedString(for: self, relativeTo: Date.now)
     }

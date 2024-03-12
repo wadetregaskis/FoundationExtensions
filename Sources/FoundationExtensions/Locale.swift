@@ -4,6 +4,7 @@ import Foundation
 
 
 public extension Locale {
+    /// The POSIX locale (en\_US\_POSIX).
     static var POSIX: Locale {
         Locale(identifier: "en_US_POSIX")
     }

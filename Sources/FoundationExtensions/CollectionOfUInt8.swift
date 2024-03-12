@@ -1,6 +1,13 @@
 //  Created by Wade Tregaskis on 2024-03-02.
 
 public extension Collection where Element == UInt8 {
+    /// - Parameters:
+    ///   - uppercase: Whether to use "A" through "F", or "a" through "f".
+    ///   - delimiterEvery: Insert `delimiter` every this number of elements (``UInt8``s).  If zero, no delimiters are inserted.
+    ///
+    ///       The sign is ignored, so e.g. -2 means 2.
+    ///   - delimiter: The delimiter to use.  Has no effect if `delimiterEvery` is zero.
+    /// - Returns: A string presenting the contents of the collection in human-readable hexadecimal.
     func asHexString(uppercase: Bool = true,
                      delimiterEvery: Int = 0,
                      delimiter: String = " ") -> String {
@@ -48,6 +55,9 @@ public extension Collection where Element == UInt8 {
         }
     }
 
+    /// An ASCII representation of the given collection's ``UInt8`` contents, in uppercase and without any spaces.
+    ///
+    /// This is equivalent to calling ``asHexString(uppercase:delimiterEvery:delimiter:)`` with default arguments.  It is provided as a convenience so that the parentheses may be omitted.
     var asHexString: String {
         asHexString()
     }

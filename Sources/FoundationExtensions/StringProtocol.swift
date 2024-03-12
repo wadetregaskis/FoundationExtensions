@@ -7,6 +7,13 @@ private let backslashesAndQuotes = CharacterSet(["\"", "\\"])
 
 
 public extension StringProtocol {
+    /// Returns the string enclosed in quotes, with nested quotes & backslashes escaped with backslashes.
+    ///
+    /// e.g. `Hello` → `"Hello"`
+    ///
+    /// e.g. `Hello, "world"!` → `"Hello, \"world\"!"`
+    ///
+    /// e.g. `Hello, \"world\"!!"` → `"Hello, \\\"world\\\"!!"`
     var quoted: String {
         var result = "\""
 

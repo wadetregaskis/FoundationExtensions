@@ -4,6 +4,7 @@ import Foundation
 
 
 public extension Optional {
+    /// Returns the description (from ``String(describing:)``) of the value if it is non-nil, else the string "nil".
     var orNilString: String {
         if let value = self {
             return String(describing: value)
@@ -14,6 +15,7 @@ public extension Optional {
 }
 
 public extension Optional where Wrapped == String {
+    /// Returns the string if it is non-nil, else the string "nil".
     var orNilString: String {
         if let self {
             return self
