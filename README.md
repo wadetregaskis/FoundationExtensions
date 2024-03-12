@@ -48,6 +48,10 @@ A miscellaneous collection of extensions to Apple's Foundation framework.
 
 * `orNilString` returns a `String` describing the contents or the string literal "nil" if the `Optional` is empty.  For `Optional<String>` it returns the contained `String` directly (when present), for all other types it uses `String(describing:)`.
 
+### RandomAccessCollection
+
+* `longestPrefix(where:)` determines the longest prefix that matches a given condition (optionally performing a transformation on that prefix, as well), using a binary search.
+
 ### StringProtocol
 
 * `quoted` returns a quoted version of the string, with backslash-escaping for existing quotes and backslashes in the string.  e.g. `#"Hello, "Alex" \ "Alexis"."#.quoted` -> `#""Hello, \"Alex\" \\ \"Alexis\".""#`
