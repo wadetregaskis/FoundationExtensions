@@ -1,6 +1,6 @@
 //  Created by Wade Tregaskis on 2024-03-11.
 
-extension BidirectionalCollection {
+public extension BidirectionalCollection {
     /// A combination of finding the longest prefix for some condition and transforming that prefix.
     ///
     /// Combining the transformation with the prefix search is an efficiency improvement for some use-cases, as it avoids duplicate work in having to repeat the transformation on the winning prefix.
