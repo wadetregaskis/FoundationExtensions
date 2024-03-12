@@ -4,7 +4,7 @@ import XCTest
 @testable import FoundationExtensions
 
 
-final class RandomAccessCollectionTests: XCTestCase {
+final class BidirectionalCollectionTests: XCTestCase {
     func testLongestPrefix() throws {
         XCTAssertNil([].longestPrefix(where: { _ in true }))
 

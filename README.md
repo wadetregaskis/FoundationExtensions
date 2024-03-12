@@ -7,6 +7,10 @@
 
 A miscellaneous collection of extensions to Apple's Foundation framework.
 
+### BidirectionalCollection
+
+* `longestPrefix(where:)` determines the longest prefix that matches a given condition (optionally performing a transformation on that prefix, as well), using a binary search.
+
 ### BinaryInteger
 
 * `bits` returns the individual bits of an integer, in an array.  e.g. `19.bits` -> `[1, 2, 16]`.
@@ -47,10 +51,6 @@ A miscellaneous collection of extensions to Apple's Foundation framework.
 ### Optional
 
 * `orNilString` returns a `String` describing the contents or the string literal "nil" if the `Optional` is empty.  For `Optional<String>` it returns the contained `String` directly (when present), for all other types it uses `String(describing:)`.
-
-### RandomAccessCollection
-
-* `longestPrefix(where:)` determines the longest prefix that matches a given condition (optionally performing a transformation on that prefix, as well), using a binary search.
 
 ### StringProtocol
 
