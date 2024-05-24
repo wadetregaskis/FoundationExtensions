@@ -9,6 +9,7 @@ public extension BidirectionalCollection {
     ///
     /// - Parameter transform: The transform to apply, returning a value if successful or nil otherwise.  This _must_ have a single transition point (where it goes from returning values to returning nil, for increasingly long prefixes), else the result is undefined.
     /// - Returns: The result of a transformation closure on the longest prefix for which the transform succeeds, or nil if there is no [non-empty] prefix for which this is the case.
+    @inlinable
     func longestPrefix<T>(where transform: (SubSequence) throws -> T?) rethrows -> T? {
         var lowerBound = self.startIndex
         var lowerBoundResult: T? = nil

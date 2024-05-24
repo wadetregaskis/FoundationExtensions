@@ -58,6 +58,8 @@ public extension Collection where Element == UInt8 {
     /// An ASCII representation of the given collection's ``UInt8`` contents, in uppercase and without any spaces.
     ///
     /// This is equivalent to calling ``asHexString(uppercase:delimiterEvery:delimiter:)`` with default arguments.  It is provided as a convenience so that the parentheses may be omitted.
+    @inlinable
+    @inline(__always)
     var asHexString: String {
         asHexString()
     }

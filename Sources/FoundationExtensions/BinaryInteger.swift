@@ -6,6 +6,7 @@ public extension BinaryInteger {
     /// Returns the individual bits of the integer, split out into an array.
     ///
     /// Not to be confused with ``bitIndices``, which is similar but the resulting array has the index of each bit that is set in the integer (`self`), not the value of that bit.
+    @inlinable
     var bits: [Self] {
         var remainder = self
         var result = [Self]()
@@ -24,6 +25,7 @@ public extension BinaryInteger {
     /// Returns the indices of each `1` bit of the integer.
     ///
     /// Not to be confused with ``bits``, which is similar but the resulting array contains the component numbers themselves.
+    @inlinable
     var bitIndices: IndexSet {
         var remainder = self
         var result = IndexSet()
