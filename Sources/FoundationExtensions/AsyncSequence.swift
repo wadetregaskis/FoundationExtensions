@@ -5,7 +5,7 @@ public extension AsyncSequence {
     /// - Parameters:
     ///   - terminator: A subsequence to look for, that will terminate collection.  Should not be empty.
     ///   - stripTerminator: Whether to include the terminator in the returned collection.
-    /// - Returns: A collection of zero or more elements
+    /// - Returns: A collection of zero or more elements.
     func collect<C: RangeReplaceableCollection>(
         upTo terminator: some Collection<Element>,
         stripTerminator: Bool = true
