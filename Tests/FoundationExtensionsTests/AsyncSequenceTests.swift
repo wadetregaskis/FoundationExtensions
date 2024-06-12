@@ -9,7 +9,7 @@ final class AsyncSequenceTests: XCTestCase {
 
     var testStream: AsyncStream<Character> {
         return AsyncStream { continuation in
-            Task {
+            Task { [input] in
                 for character in input {
                     continuation.yield(character)
                 }
@@ -25,7 +25,7 @@ final class AsyncSequenceTests: XCTestCase {
 
     var testStreamThrowing: AsyncThrowingStream<Character, any Error> {
         return AsyncThrowingStream { continuation in
-            Task {
+            Task { [input] in
                 for character in input.prefix(25) {
                     continuation.yield(character)
                 }
