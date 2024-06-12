@@ -10,7 +10,7 @@ public extension AsyncSequence {
     func collect<C: RangeReplaceableCollection>(
         upTo terminator: some Collection<Element>,
         stripTerminator: Bool = true
-    ) async rethrows -> C where Element: Equatable,
+    ) async rethrows -> C where Element: Equatable, // TODO: adopt typed throws someday (requires bumping all minimum OS versions to 2024 releases, e.g. macOS 15, in order to use the `Failure` associated type).
                                 Element == C.Element {
         assert(!terminator.isEmpty, "Terminator is empty.")
 
