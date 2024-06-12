@@ -1,6 +1,6 @@
 //  Created by Wade Tregaskis on 2018-02-24.
 
-import Foundation
+private import Foundation
 
 
 private let backslashesAndQuotes = CharacterSet(["\"", "\\"])

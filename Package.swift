@@ -1,6 +1,27 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 5.10
 
 import PackageDescription
+
+let enables = ["AccessLevelOnImport",
+               "BareSlashRegexLiterals",
+               "ConciseMagicFile",
+               "DeprecateApplicationMain",
+               "DisableOutwardActorInference",
+               "DynamicActorIsolation",
+               "ExistentialAny",
+               "ForwardTrailingClosures",
+               "FullTypedThrows",
+               "GlobalConcurrency",
+               "ImplicitOpenExistentials",
+               "ImportObjcForwardDeclarations",
+               "InferSendableFromCaptures",
+               "InternalImportsByDefault",
+               "IsolatedDefaultValues",
+               "StrictConcurrency"]
+
+let settings: [SwiftSetting] = enables.flatMap {
+    [.enableUpcomingFeature($0), .enableExperimentalFeature($0)]
+}
 
 let package = Package(
     name: "FoundationExtensions",
@@ -19,9 +40,11 @@ let package = Package(
     targets: [
         .target(
             name: "FoundationExtensions",
-            dependencies: []),
+            dependencies: [],
+            swiftSettings: settings),
         .testTarget(
             name: "FoundationExtensionsTests",
-            dependencies: ["FoundationExtensions"]),
+            dependencies: ["FoundationExtensions"],
+            swiftSettings: settings),
     ]
 )

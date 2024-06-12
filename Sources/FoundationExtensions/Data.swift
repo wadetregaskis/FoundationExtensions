@@ -1,6 +1,6 @@
 //  Created by Wade Tregaskis on 2022-08-06.
 
-import Foundation
+public import Foundation
 
 
 public extension Data {

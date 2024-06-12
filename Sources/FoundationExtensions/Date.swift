@@ -1,11 +1,11 @@
 //  Created by Wade Tregaskis on 2022-08-07.
 
 #if !os(Linux) && !os(Windows) // Only Apple platforms include RelativeDateTimeFormatter in Foundation.
-import Foundation
+public import Foundation
 
 public extension Date {
     @usableFromInline
-    internal static let relativeDateTimeFormatter = {
+    internal nonisolated(unsafe) static let relativeDateTimeFormatter = {
         var formatter = RelativeDateTimeFormatter()
         formatter.dateTimeStyle = .named
         formatter.unitsStyle = .full

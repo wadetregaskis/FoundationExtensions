@@ -1,6 +1,6 @@
 //  Created by Wade Tregaskis on 2023-04-27.
 
-import Foundation
+public import Foundation
 
 public extension BinaryInteger {
     /// Returns the individual bits of the integer, split out into an array.

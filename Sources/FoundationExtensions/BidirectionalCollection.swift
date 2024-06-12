@@ -9,6 +9,43 @@ public extension BidirectionalCollection {
     ///
     /// - Parameter transform: The transform to apply, returning a value if successful or nil otherwise.  This _must_ have a single transition point (where it goes from returning values to returning nil, for increasingly long prefixes), else the result is undefined.
     /// - Returns: The result of a transformation closure on the longest prefix for which the transform succeeds, or nil if there is no [non-empty] prefix for which this is the case.
+#if swift(>=6) // Fucking Swift… have to completely duplicate the entire implementation of the function because it won't allow #if/#else/#endif around just the declaration. 😤
+    @inlinable
+    func longestPrefix<T, Failure: Error>(where transform: (SubSequence) throws(Failure) -> T?) throws(Failure) -> T? {
+        var lowerBound = self.startIndex
+        var lowerBoundResult: T? = nil
+        var upperBound = self.endIndex
+
+        var currentGuess = self.index(lowerBound, offsetBy: self.distance(from: lowerBound, to: upperBound) / 2)
+
+        while lowerBound != upperBound {
+            let prefix = self[..<currentGuess]
+
+            if let result = try transform(prefix) {
+                let distance = self.distance(from: currentGuess, to: upperBound)
+
+                guard 0 < distance else {
+                    return result
+                }
+
+                lowerBound = currentGuess
+                lowerBoundResult = result
+                self.formIndex(&currentGuess, offsetBy: (distance + 1) / 2)
+            } else {
+                let distance = self.distance(from: lowerBound, to: currentGuess)
+
+                guard 0 < distance else {
+                    return lowerBoundResult
+                }
+
+                upperBound = self.index(before: currentGuess)
+                self.formIndex(&currentGuess, offsetBy: -((distance + 1) / 2))
+            }
+        }
+
+        return lowerBoundResult
+    }
+#else
     @inlinable
     func longestPrefix<T>(where transform: (SubSequence) throws -> T?) rethrows -> T? {
         var lowerBound = self.startIndex
@@ -44,4 +81,5 @@ public extension BidirectionalCollection {
 
         return lowerBoundResult
     }
+#endif
 }
