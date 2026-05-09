@@ -1,7 +1,7 @@
 //  Created by Wade Tregaskis on 2024-03-02.
 
 import XCTest
-@testable import FoundationExtensions
+import FoundationExtensions
 
 
 final class CollectionOfUInt8Tests: XCTestCase {

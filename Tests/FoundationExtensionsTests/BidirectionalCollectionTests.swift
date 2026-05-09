@@ -1,7 +1,7 @@
 //  Created by Wade Tregaskis on 2024-03-11.
 
 import XCTest
-@testable import FoundationExtensions
+import FoundationExtensions
 
 
 final class BidirectionalCollectionTests: XCTestCase {

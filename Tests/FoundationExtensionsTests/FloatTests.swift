@@ -1,7 +1,7 @@
 //  Created by Wade Tregaskis on 2024-02-13.
 
 import XCTest
-@testable import FoundationExtensions
+import FoundationExtensions
 
 
 final class FloatTests: XCTestCase {

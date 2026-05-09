@@ -1,7 +1,7 @@
 //  Created by Wade Tregaskis on 2023-04-27.
 
 import XCTest
-@testable import FoundationExtensions
+import FoundationExtensions
 
 
 final class BinaryIntegerTests: XCTestCase {
