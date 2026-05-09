@@ -16,7 +16,9 @@ public extension BidirectionalCollection {
         var lowerBoundResult: T? = nil
         var upperBound = self.endIndex
 
-        var currentGuess = self.index(lowerBound, offsetBy: self.distance(from: lowerBound, to: upperBound) / 2)
+        // Skip the empty prefix - only non-empty prefixes should be returned, with empty resulting in nil instead.  Without the `max(1, …)`, the midpoint coincides with `startIndex` when `count == 1`, which - if the closure happened to accept the empty subsequence - would cause the empty prefix to be returned only for single-element collections - inconsistent and surprising.
+        var currentGuess = self.index(lowerBound, offsetBy: Swift.max(1, self.distance(from: lowerBound, to: upperBound) / 2),
+                                      limitedBy: upperBound) ?? upperBound
 
         while lowerBound != upperBound {
             let prefix = self[..<currentGuess]
@@ -52,7 +54,9 @@ public extension BidirectionalCollection {
         var lowerBoundResult: T? = nil
         var upperBound = self.endIndex
 
-        var currentGuess = self.index(lowerBound, offsetBy: self.distance(from: lowerBound, to: upperBound) / 2)
+        // Skip the empty prefix - only non-empty prefixes should be returned, with empty resulting in nil instead.  Without the `max(1, …)`, the midpoint coincides with `startIndex` when `count == 1`, which - if the closure happened to accept the empty subsequence - would cause the empty prefix to be returned only for single-element collections - inconsistent and surprising.
+        var currentGuess = self.index(lowerBound, offsetBy: Swift.max(1, self.distance(from: lowerBound, to: upperBound) / 2),
+                                      limitedBy: upperBound) ?? upperBound
 
         while lowerBound != upperBound {
             let prefix = self[..<currentGuess]
