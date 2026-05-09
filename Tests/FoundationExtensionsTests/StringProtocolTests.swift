@@ -12,8 +12,15 @@ final class StringProtocolTests: XCTestCase {
                                 (#"""#, #""\"""#),
                                 (#"\"#, #""\\""#),
                                 (#"\""#, #""\\\"""#),
-                                (#"Hello, "world"."#, #""Hello, \"world\".""#)] {
-            XCTAssertEqual(input.quoted, output)
+                                (#"Hello, "world"."#, #""Hello, \"world\".""#),
+                                ("\n",       "\"\n\""),  // newlines and tabs are not special.
+                                ("\t",       "\"\t\""),
+                                ("a\\b\\c",  #""a\\b\\c""#),
+                                (#""""#,     #""\"\"""#),
+                                ("emoji 🙂",  #""emoji 🙂""#),
+                                ("café",     #""café""#)] {
+            XCTAssertEqual(input.quoted, output)  // Strings.
+            XCTAssertEqual(input[...].quoted, output) // Substrings.
         }
     }
 }
