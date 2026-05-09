@@ -10,7 +10,6 @@ let enables = ["AccessLevelOnImport",
                "DynamicActorIsolation",
                "ExistentialAny",
                "ForwardTrailingClosures",
-               //"FullTypedThrows", // Not ready yet, in Swift 6.  https://forums.swift.org/t/where-is-fulltypedthrows/72346/15
                "GlobalConcurrency",
                "ImplicitOpenExistentials",
                "ImportObjcForwardDeclarations",
