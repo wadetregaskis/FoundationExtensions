@@ -1,6 +1,6 @@
 //  Created by Wade Tregaskis on 2024-03-06
 
-extension Comparable {
+public extension Comparable {
     /// Conforms the value to the given range.
     ///
     /// i.e. if it is below the range's lower bound, it is set to that lower bound.  Otherwise it is not modified.
@@ -80,7 +80,7 @@ extension Comparable {
     }
 }
 
-extension Comparable where Self: Strideable {
+public extension Comparable where Self: Strideable {
     /// Conforms the value to the given range.
     ///
     /// If it is below the range's lower bound, it is set to that lower bound.
